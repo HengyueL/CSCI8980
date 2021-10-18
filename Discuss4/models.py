@@ -50,15 +50,15 @@ class SigmoidNormNet(nn.Module):
 
         layer_lst = [nn.Linear(in_features=1,
                                out_features=hidden_neuron),
-                     nn.BatchNorm1d(num_features=hidden_neuron),
-                     # nn.LayerNorm(normalized_shape=hidden_neuron),
+                     # nn.BatchNorm1d(num_features=hidden_neuron),
+                     nn.LayerNorm(normalized_shape=hidden_neuron),
                      nn.Sigmoid()]
 
         for i in range(num_layer-2):
             layer_lst.append(nn.Linear(in_features=hidden_neuron,
                                        out_features=hidden_neuron))
-            # layer_lst.append(nn.LayerNorm(normalized_shape=hidden_neuron))
-            layer_lst.append(nn.BatchNorm1d(num_features=hidden_neuron))
+            layer_lst.append(nn.LayerNorm(normalized_shape=hidden_neuron))
+            # layer_lst.append(nn.BatchNorm1d(num_features=hidden_neuron))
             layer_lst.append(nn.Sigmoid())
 
         layer_lst.append(nn.Linear(in_features=hidden_neuron,
